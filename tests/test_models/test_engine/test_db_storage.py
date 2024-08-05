@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains the TestDBStorageDocs and TestDBStorage classes
+Include Test for DBStorageDocs and DBStorage classes
 """
 
 from datetime import datetime
@@ -46,7 +46,7 @@ test_db_storage.py'])
                          "Found code style errors (and warnings).")
 
     def test_db_storage_module_docstring(self):
-        """Test for the db_storage.py module docstring"""
+        """Test the db_storage.py modle docstring"""
         self.assertIsNot(db_storage.__doc__, None,
                          "db_storage.py needs a docstring")
         self.assertTrue(len(db_storage.__doc__) >= 1,
@@ -60,7 +60,7 @@ test_db_storage.py'])
                         "DBStorage class needs a docstring")
 
     def test_dbs_func_docstrings(self):
-        """Test for the presence of docstrings in DBStorage methods"""
+        """Test docstrings presence in DBStorage methods"""
         for func in self.dbs_f:
             self.assertIsNot(func[1].__doc__, None,
                              "{:s} method needs a docstring".format(func[0]))
@@ -72,17 +72,25 @@ class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
-        """Test that all returns a dictionaty"""
+        """Test returning a dictionaty"""
         self.assertIs(type(models.storage.all()), dict)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_no_class(self):
-        """Test that all returns all rows when no class is passed"""
+        """Test returning all rows without class passed"""
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_new(self):
-        """test that new adds an object to the database"""
+        """test for object addition to DB"""
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
-        """Test that save properly saves objects to file.json"""
+        """Test confirm objects saving to file.json"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """Test for item retrieval in db properly"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(self):
+        """Test to count elements returned in db"""

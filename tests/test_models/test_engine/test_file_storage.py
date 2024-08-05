@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains the TestFileStorageDocs classes
+Tests for FileStorageDocs classes
 """
 
 from datetime import datetime
@@ -24,10 +24,10 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class TestFileStorageDocs(unittest.TestCase):
-    """Tests to check the documentation and style of FileStorage class"""
+    """Tests of documentations and styles of FileStorage class"""
     @classmethod
     def setUpClass(cls):
-        """Set up for the doc tests"""
+        """Setting up the doc tests"""
         cls.fs_f = inspect.getmembers(FileStorage, inspect.isfunction)
 
     def test_pep8_conformance_file_storage(self):
@@ -69,7 +69,7 @@ test_file_storage.py'])
 
 
 class TestFileStorage(unittest.TestCase):
-    """Test the FileStorage class"""
+    """FileStorage class TEST"""
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_all_returns_dict(self):
         """Test that all returns the FileStorage.__objects attr"""
@@ -80,7 +80,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_new(self):
-        """test that new adds an object to the FileStorage.__objects attr"""
+        """test for addition of object to the FileStorage.__objects attr"""
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
         FileStorage._FileStorage__objects = {}
@@ -96,7 +96,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_save(self):
-        """Test that save properly saves objects to file.json"""
+        """Test for properly saving objects to file.json"""
         storage = FileStorage()
         new_dict = {}
         for key, value in classes.items():
@@ -113,3 +113,11 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get(self):
+        """Test for objects retrival stored in file.json"""
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count(self):
+        """Test returning objects count for file.json"""
